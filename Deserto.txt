@@ -6,8 +6,8 @@ X - - X X X X - - - X - X X X X - X
 X - - - - - - - X - - - - - X X - X
 X X X - - - X X X - X X - X X X - X
 X - X - X X X - - - - X - - - X - X
-X - - - X X X - - X - X X - - X - F
-X - - - - - - - X X - X - - - x - F
+X - - - X X X - - X - X X - - X - X
+X - - - - - - - X X - X - - - x - X
 X P - X X X X X X X - X - - X X - F
 X - - - - - - - - - - X - - - - - X
 X - - X X X - - X X X X X - X X - X

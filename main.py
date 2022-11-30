@@ -1,5 +1,4 @@
 from mapa import Mapa 
-#from Graph import Grafo
 import os
 import time
 from newSearch import newSearch
@@ -10,8 +9,7 @@ def main():
     
     e = -1
     print("*************************************\n*             RACETRACK             *\n*************************************\n")
-    print("MAPAS:\n    -> [1] - Mapa Praia     \U0001f3d6\uFE0F\n    -> [2] - Mapa Montanha  \u26F0\uFE0F\n    -> [3] - Mapa Deserto   \U0001f3dc\uFE0F")
-    
+    print("MAPAS:\n    -> [1] - Mapa Praia     \U0001f3d6\uFE0F\n    -> [2] - Mapa Montanha  \u26F0\uFE0F\n    -> [3] - Mapa Deserto   \U0001f3dc\uFE0F\n    -> [4] - Mapa Pista     \U0001f3c1")
     while 1:
         e = int(input("Escolha o seu mapa: "))
 
@@ -27,6 +25,10 @@ def main():
             m = Mapa("Deserto")
             os.system('clear')
             break
+        elif (e == 4):
+            m = Mapa("Pista")
+            os.system('clear')
+            break
         else:
             print("Opção inválida...")
     
@@ -34,7 +36,8 @@ def main():
     map = m.matrixMap()
     start = m.getStart(map)
     final = m.getFinal(map)
-    tuple = (int(start[0]),int(start[1]))
+    st =    start.split('.')
+    tuple = (int(st[0]),int(st[1]))
     solve = newSearch(map,tuple)
     solve.convertMapToGraph()
     graph = solve.g
@@ -72,10 +75,18 @@ def main():
             print(graph.imprime_aresta())
         
         elif saida == 5:
-            print(graph.procura_DFS(start,final, path=[], visited=set()))
+            result = graph.procura_DFS(start,final, path=[], visited=set())
+            print(result)
+            print('\n')
+            m.showFinalmap(map,result[0])
             
         elif saida == 6:
-            print(graph.procura_BFS(start,final))
+            print(start)
+            print(final)
+            result = graph.procura_BFS(start,final)
+            print(result)
+            print('\n')
+            m.showFinalmap(map,result[0])
         
 
     

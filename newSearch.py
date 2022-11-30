@@ -13,7 +13,7 @@ class newSearch:
     
     def convertMapToGraph(self):
         
-
+        height, width = len(self.matrix), len(self.matrix[0])
         
         visited = []
         
@@ -34,9 +34,9 @@ class newSearch:
             for dir in directions:
                 
                 heightC, widthC = coord[0]+dir[0], coord[1]+dir[1]
-                if (self.matrix[heightC][widthC] == "X" or (heightC,widthC) in visited): continue      # condição para criar o mapa
-                coords = str(coord[0])+str(coord[1])
-                coords1 = str(heightC)+str(widthC)
+                if (heightC < 0 or heightC >= height or widthC < 0 or widthC >= width or self.matrix[heightC][widthC] == "X" or (heightC,widthC) in visited): continue      # condição para criar o mapa
+                coords = str(coord[0])+       '.'                +  str(coord[1])
+                coords1 = str(heightC)+       '.'                +  str(widthC)
                 self.g.add_edge(coords,coords1,1)
                 queue.put((heightC,widthC))
     
