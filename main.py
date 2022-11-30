@@ -1,8 +1,8 @@
 from mapa import Mapa 
-from grafo import Graph
-from nodo import Node
+#from Graph import Grafo
 import os
 import time
+from newSearch import newSearch
 
 
 def main():
@@ -31,18 +31,26 @@ def main():
             print("Opção inválida...")
     
     
-    matrix = m.matrixMap()
-    g = convertMapToGraph(matrix)
+    map = m.matrixMap()
+    start = m.getStart(map)
+    final = m.getFinal(map)
+    tuple = (int(start[0]),int(start[1]))
+    solve = newSearch(map,tuple)
+    solve.convertMapToGraph()
+    graph = solve.g
+    
+    
+    
     saida = -1
     
     while saida != 0:
         print("\n**************************\n*          MENU          *\n**************************\n")
         print("-> [1] - Imprimir Mapa")
         print("-> [2] - Imprimir Grafo")
-        print("-> [3] - Desenhar Grafo")
-        print("-> [4] - Imprimir Nodos do Grafo")
-        print("-> [5] - Imprimir Arestas do Grafo")
-        print("-> [6] - DFS")
+        print("-> [3] - Imprimir Nodos do Grafo")
+        print("-> [4] - Imprimir Arestas do Grafo")
+        print("-> [5] - DFS")
+        print("-> [6] - BFS")
         print("-> [0] - Sair\n")
         saida = int(input("Escolha uma opção: "))
         print('\n')
@@ -55,69 +63,21 @@ def main():
             m.printMap()
     
         elif saida == 2:
-            print(g)
-        
+            print(graph)
+
         elif saida == 3:
-            g.desenha()
-
-        elif saida == 4:
-            print(g.m_graph.keys())
+            print(graph.m_graph.keys())
             
+        elif saida == 4:
+            print(graph.imprime_aresta())
+        
         elif saida == 5:
-            print(g.imprime_aresta())
-        
+            print(graph.procura_DFS(start,final, path=[], visited=set()))
+            
         elif saida == 6:
-            start = m.getStart(matrix)
-            #final = m.getFinal(matrix)
-            print(g.procura_DFS(start,"33", path=[], visited=set()))
+            print(graph.procura_BFS(start,final))
         
-    
-    
-    
 
-def convertMapToGraph(matrix):
-    g  = Graph()
-    i = j = 0
-    largura = len(matrix[0])
-    comprimento = len(matrix)
-
-    
-    
-    for linha in matrix:
-        for nodo in linha:
-            if (i>0):
-                custo = verificaPeca(nodo)
-                n1 = f'{i}{j}'
-                n2 = f'{i-1}{j}'
-                g.add_edge(n1,n2,custo)
-            if (i<largura-1):
-                custo = verificaPeca(nodo)
-                n1 = f'{i}{j}'
-                n2 = f'{i+1}{j}'
-                g.add_edge(n1,n2,custo)
-            if (j>0):
-                custo = verificaPeca(nodo)
-                n1 = f'{i}{j}'
-                n2 = f'{i}{j-1}'
-                g.add_edge(n1,n2,custo)
-            if (j<comprimento-1):
-                custo = verificaPeca(nodo)
-                n1 = f'{i}{j}'
-                n2 = f'{i}{j+1}'
-                g.add_edge(n1,n2,custo)
-
-            i+=1
-        j += 1
-        i = 0
-    return g
-
-
-def verificaPeca(nodo):
-    if nodo == 'X':
-        return 25
-    else:
-        return 1
-    
     
 if __name__ == "__main__":
     main()

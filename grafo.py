@@ -1,5 +1,5 @@
-import networkx as nx
 import matplotlib.pyplot as plt
+from queue import Queue
 
 import math
 from nodo import Node
@@ -122,34 +122,50 @@ class Graph:
                     return resultado
         path.pop()  # se nao encontra remover o que está no caminho......
         return None
-
-    ###########################
-    # Desenha grafo  modo grafico
-    #########################
-    def desenha(self):
-        ##criar lista de vertices
-        lista_v = self.m_nodes
-        lista_a = []
-        g=nx.Graph()
-
-        #Converter para o formato usado pela biblioteca networkx
-        for nodo in lista_v:
-            n = nodo.getName()
-            g.add_node(n)
-            for (adjacente, peso) in self.m_graph[n]:
-                lista = (n, adjacente)
-                #lista_a.append(lista)
-                g.add_edge(n,adjacente,weight=peso)
-
-        #desenhar o grafo
-        pos = nx.spring_layout(g)
-        nx.draw_networkx(g, pos, with_labels=True, font_weight='bold')
-        labels = nx.get_edge_attributes(g, 'weight')
-        nx.draw_networkx_edge_labels(g, pos, edge_labels=labels)
-
-        plt.draw()
-        plt.show()
+    
+    
+    
+    
+    ################################################################################
+    # Procura BFS
+    ####################################################################################
         
+    def procura_BFS(self, start, end):
+        queue = Queue()
+        pais = {}
+        visitados = []
+        caminho = []
+        
+        queue.put(start)
+        pais[start] = set()
+        pais[start].add(start)
+                
+        while not queue.empty(): 
+            node = queue.get()
+            visitados.append(node)
+            pai = end
+            
+            for(adj, valor) in self.m_graph[node]:
+                
+                if adj == end:
+                    pais[adj] = set()
+                    pais[adj].add(node)
+
+                    while pai != start:    
+                        caminho.append(pai)
+                        x = pais.get(pai)
+                        pai = x.pop()
+                    
+                    caminho.append(pai)
+                    caminho.reverse()
+                    custoT= self.calcula_custo(caminho)
+                    return (caminho, custoT)
+
+                if adj not in visitados:
+                    queue.put(adj)
+                    pais[adj] = set()
+                    pais[adj].add(node)
+        return None
         
         
 

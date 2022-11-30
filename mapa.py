@@ -33,19 +33,20 @@ class Mapa:
         with open(self.m_name+".txt", 'r') as f: 
             matrix = [[peca for peca in line[:-1].split(' ')] for line in f]
         
-        for linha in matrix:
-            print(linha)
-        print('')
+        #for linha in matrix:
+        #    print(linha)
+        #print('')
         return matrix
     
     def getStart(self,matrix):
-            start = ([(row.index('P'),index) for index, row in enumerate(matrix) if 'P' in row])
-            x, y = tuple(start[0])
-            return (f'{x}{y}')
+        start = ([(row.index('P'),index) for index, row in enumerate(matrix) if 'P' in row])
+        x, y = tuple(start[0])
+        return (f'{y}{x}')
         
     def getFinal(self,matrix):
-        print([(row.index('F'),index) for index, row in enumerate(matrix) if 'F' in row])
-
+        final = ([(row.index('F'),index) for index, row in enumerate(matrix) if 'F' in row])
+        x , y = tuple(final[0])
+        return (f'{y}{x}')
 
     
     
