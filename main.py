@@ -34,6 +34,7 @@ def main():
     
     
     map = m.matrixMap()
+    #map2 = m.matrixMap()
     start = m.getStart(map)
     final = m.getFinal(map)
     st =    start.split('.')
@@ -41,7 +42,7 @@ def main():
     solve = newSearch(map,tuple)
     solve.convertMapToGraph()
     graph = solve.g
-    
+    map1 = m.matrixMap()
     
     
     saida = -1
@@ -86,7 +87,7 @@ def main():
             result = graph.procura_BFS(start,final)
             print(result)
             print('\n')
-            m.showFinalmap(map,result[0])
+            m.showFinalmap(map1,result[0])
         
 
     
