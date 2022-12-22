@@ -115,13 +115,21 @@ class Mapa:
                     parse = p2[1:].split(',')
                     x2 = int(parse[0])
                     y2 = int(parse[1])
-                    
+                    if (x1 == x2 and y1 == y2):
+                        if matrix[y1][x1-1] != "X":
+                            x1 = x1-1
+                        elif matrix[y1-1][x1] != "X":
+                            y1 = y1-1
+                        elif matrix[y1-1][x1-1] != "X":
+                            x1 = x1-1 
+                            y1 = y1-1
+                        
                     print("Localização Jogador0 (A): (" + str(x1) + ", " + str(y1) + ")  |  Localização Jogador1 (B): (" + str(x2) + ", " + str(y2) + ")")
                     l1 = matrix[y1][x1]
                     l2 = matrix[y2][x2]
+                    
                     matrix[y1][x1] = "A"
                     matrix[y2][x2] = "B"
-                    
                     for linha in matrix:
                         for peca in linha:
                             if peca == "B":
