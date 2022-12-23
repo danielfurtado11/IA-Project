@@ -68,7 +68,7 @@ class Procura():
             posY = posY-velY
             return [((posX,posY,0,0),25)]
         
-        acel = [(0,1), (0,-1), (1,0), (1,1), (1,-1), (-1,1), (-1,0), (0,0)]      # todas as acelerações possíveis
+        acel = [(0,1), (0,-1), (1,0), (1,1), (1,-1), (-1,1), (-1,0), (0,0),(-1,-1)]      # todas as acelerações possíveis
         
         
         if (velX == 0 and velY == 0):   # quando a velocidade é (0,0) nao pode ter a aceleração (0,0) senão ia estar parado
