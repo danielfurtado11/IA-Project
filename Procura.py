@@ -106,32 +106,41 @@ class Procura():
             return ((posX1,posY1,velX,velY),1)
         
         
-        valido = False
-        
-        
-        
-        #if velX >= 0 
-        
-        
-        
-        
-        
-        xMenor, xMaior = posX, posX1
-        if xMenor > xMaior:
-            xMenor, xMaior = xMaior,xMenor
-        yMenor, yMaior = posY, posY1
-        if yMenor > yMaior:
-            yMenor,yMaior = yMaior,yMenor
-        
-        if "X" not in self.map[yMenor][xMenor:xMaior+1] and "X" not in list(map(lambda l : l[xMaior], self.map))[yMenor:yMaior+1]:
-            valido = True
 
-        if "X" not in list(map(lambda l : l[xMenor], self.map))[yMenor:yMaior+1] and "X" not in self.map[yMaior][xMenor:xMaior+1]:
-            valido = True
+        
+        xP, xG = posX, posX1
+        if velX < 0 :
+            xP, xG = posX1, posX
+        yP, yG = posY, posY1
+        if velY < 0 :
+            yP, yG = posY1, posY
+              
+    
+        
+        caminho = self.verifica(xP,xG,yP,yG)
+        
+        
 
-
-        if valido:  
+        if caminho:  
             return ((posX1,posY1,velX,velY),1)
         return None
         
+        
+        
+    def verifica(self, xP,xG, yP, yG):
+        x1G = xG+1
+        x1P = xP
+        y1G = yG+1
+        y1P = yP
+        while x1G != x1P:
+            if self.map[yP][x1P] == "X" or self.map[yG][x1P] == "X":
+                return False
+            x1P +=1
+        
+        while y1P != y1G:
+            if self.map[y1P][xP] == "X" or self.map[y1P][xG] == "X":
+                return False
+            y1P +=1
+                
+        return True
         
