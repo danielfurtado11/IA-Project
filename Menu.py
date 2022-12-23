@@ -31,7 +31,7 @@ class Menu():
             e = int(input("Escolha o seu mapa: "))
     
             if (e == 1):
-                m = Mapa("Praia")
+                m = Mapa("Praia1")
                 os.system('clear')
                 break
             elif (e == 2):
@@ -160,10 +160,10 @@ class Menu():
         y = len(map)-2
         x1 = -1
         y1 = -1
-        while (x1 >= x or x1 <= 0 or y1 >= y or y1 <= 0):
+        while (x1 > x or x1 < 0 or y1 > y or y1 < 0):
             x1 = int(input("Escolha a coordenada inicial válida X do Jogador" + str(i) + " entre 1 e " + str(x) + ": "))
             y1 = int(input("Escolha a coordenada inicial válida Y do Jogador" + str(i) + " entre 1 e " + str(y) + ": "))
-            if (x1 >= x or x1 <= 0 or y1 >= y or y1 <= 0 ):
+            if (x1 > x or x1 < 0 or y1 > y or y1 < 0 ):
                 print("Coordenadas inválidas!")
             
             elif (map[y1][x1] == "X"):
