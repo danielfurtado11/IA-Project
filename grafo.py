@@ -142,7 +142,7 @@ class Graph:
     # Procura BFS
     ####################################################################################
      
-    '''   
+    
     def procura_BFS(self, start, end):
         queue = Queue()             
         pais = {}
@@ -238,7 +238,7 @@ class Graph:
             # funçao calcula custo caminho
             custo = self.calcula_custo(path)
         return (path, custo)
-
+    '''
 
     ###################################################
     # Devolve vizinhos de um nó
@@ -250,7 +250,7 @@ class Graph:
             lista.append((adjacente, peso))
         return lista
 
-
+    
     ################################################################################
     # Procura GREEDY
     ####################################################################################
