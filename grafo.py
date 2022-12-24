@@ -141,7 +141,8 @@ class Graph:
     ################################################################################
     # Procura BFS
     ####################################################################################
-        
+     
+    '''   
     def procura_BFS(self, start, end):
         queue = Queue()             
         pais = {}
@@ -189,7 +190,55 @@ class Graph:
                     pais[adj].add(node)
         return None
         
+    '''
         
+    def procura_BFS(self, start, end):
+        # definir nodos visitados para evitar ciclos
+        visited = set()
+        fila = Queue()
+
+        # adicionar o nodo inicial à fila e aos visitados
+        fila.put(start)
+        visited.add(start)
+
+        # garantir que o start node nao tem pais...
+        parent = dict()
+        parent[start] = None
+
+        path_found = False
+        while not fila.empty() and path_found == False:
+
+
+            nodo_atual = fila.get()
+            adjS = nodo_atual[1:-1].split(",")
+            x1 = adjS[0]
+            y1 = adjS[1]
+            adj = "(" + str(x1) + "," + str(y1) + ")"
+            if adj == end:
+                path_found = True
+                end = nodo_atual
+            else:
+                for (adjacente, peso) in self.m_graph[nodo_atual]:
+                    if adjacente not in visited:
+                        fila.put(adjacente)
+                        parent[adjacente] = nodo_atual
+                        visited.add(adjacente)
+
+
+
+        # Reconstruir o caminho
+
+        path = []
+        if path_found:
+            path.append(end)
+            while parent[end] is not None:
+                path.append(parent[end])
+                end = parent[end]
+            path.reverse()
+            # funçao calcula custo caminho
+            custo = self.calcula_custo(path)
+        return (path, custo)
+
 
     ###################################################
     # Devolve vizinhos de um nó

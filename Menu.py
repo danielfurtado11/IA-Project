@@ -31,7 +31,7 @@ class Menu():
             e = int(input("Escolha o seu mapa: "))
     
             if (e == 1):
-                m = Mapa("Praia1")
+                m = Mapa("Praia")
                 os.system('clear')
                 break
             elif (e == 2):

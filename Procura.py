@@ -32,8 +32,6 @@ class Procura():
                 continue
             
             for est, peso in expandir:
-                if (peso != 25):
-                    peso = self.calculaDistancia(estado,est)
                 self.grafo.add_edge(estado,est,peso)
                 
                 if est not in expandidos and est not in paraExpandir:
