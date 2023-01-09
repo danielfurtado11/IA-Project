@@ -1,4 +1,4 @@
-# Trabalho de Inteligencia Artificial VectorRacer
+# Trabalho de Inteligência Artificial VectorRacer
 
 ## Equipa de trabalho:
 
