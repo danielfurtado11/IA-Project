@@ -1,8 +1,8 @@
-# Trabalho de Inteligencia Artificial 2022/2023
+# Trabalho de Inteligencia Artificial VectorRacer
 
 ## Equipa de trabalho:
 
-1. Daniel Furtado 
-2. Telmo Maciel
-3. Xavier Mota
-4. Pedro Dantas
+1. Daniel Furtado A97327
+2. Telmo Maciel A96569
+3. Xavier Mota A88220
+4. Pedro Dantas A97396
